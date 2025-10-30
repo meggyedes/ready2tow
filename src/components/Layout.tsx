@@ -7,6 +7,13 @@ interface LayoutProps {
   children: ReactNode
 }
 
+// Navigation items defined outside component to avoid recreation
+const NAV_ITEMS = [
+  { path: '/', icon: Home, label: 'Főoldal' },
+  { path: '/checklist', icon: ClipboardCheck, label: 'Ellenőrzőlista' },
+  { path: '/kresz', icon: BookOpen, label: 'KRESZ' },
+] as const
+
 const Layout = ({ children }: LayoutProps) => {
   const location = useLocation()
 
@@ -17,12 +24,6 @@ const Layout = ({ children }: LayoutProps) => {
       window.scrollTo({ top: 0, behavior: 'instant' })
     })
   }, [location.pathname])
-
-  const navItems = [
-    { path: '/', icon: Home, label: 'Főoldal' },
-    { path: '/checklist', icon: ClipboardCheck, label: 'Ellenőrzőlista' },
-    { path: '/kresz', icon: BookOpen, label: 'KRESZ' },
-  ]
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -64,7 +65,7 @@ const Layout = ({ children }: LayoutProps) => {
       <nav className="fixed bottom-0 left-0 right-0 bg-white shadow-2xl border-t-2 border-gray-100 z-50">
         <div className="container mx-auto px-4">
           <div className="flex justify-around items-center py-2">
-            {navItems.map((item) => {
+            {NAV_ITEMS.map((item) => {
               const Icon = item.icon
               const isActive = location.pathname === item.path
 

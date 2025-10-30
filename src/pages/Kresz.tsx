@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   Search,
@@ -18,7 +18,7 @@ import {
 interface KreszRule {
   id: string
   category: string
-  icon: any
+  icon: React.ComponentType<any>
   title: string
   content: string
   important?: boolean
@@ -181,14 +181,22 @@ const Kresz = () => {
     },
   ]
 
-  const filteredRules = rules.filter(
-    rule =>
-      rule.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      rule.content.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      rule.category.toLowerCase().includes(searchTerm.toLowerCase())
-  )
+  // Memoize filtered rules to avoid recalculating on every render
+  const filteredRules = useMemo(() => {
+    const lowerSearch = searchTerm.toLowerCase()
+    return rules.filter(
+      rule =>
+        rule.title.toLowerCase().includes(lowerSearch) ||
+        rule.content.toLowerCase().includes(lowerSearch) ||
+        rule.category.toLowerCase().includes(lowerSearch)
+    )
+  }, [searchTerm, rules])
 
-  const categories = Array.from(new Set(rules.map(rule => rule.category)))
+  // Memoize categories extraction
+  const categories = useMemo(
+    () => Array.from(new Set(rules.map(rule => rule.category))),
+    [rules]
+  )
 
   const toggleExpand = (id: string) => {
     setExpandedId(expandedId === id ? null : id)

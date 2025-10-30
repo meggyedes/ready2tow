@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   CheckCircle2,
@@ -58,6 +58,62 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Hash: Hash,
   Lock: Lock,
 }
+
+// Memoized ChecklistItem component to prevent unnecessary re-renders
+const ChecklistItemComponent = React.memo<{
+  item: ChecklistItem
+  index: number
+  onToggle: (id: string) => void
+}>(({ item, index, onToggle }) => {
+  const IconComponent = iconMap[item.iconName] || Package
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: -20 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ delay: index * 0.05 }}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+      onClick={() => onToggle(item.id)}
+      className={`card cursor-pointer transition-all duration-300 p-3 md:p-4 ${
+        item.checked
+          ? 'bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-300'
+          : 'hover:shadow-xl'
+      }`}
+    >
+      <div className="flex items-start gap-2 md:gap-4">
+        <div className="flex-shrink-0">
+          {item.checked ? (
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ type: 'spring', stiffness: 500, damping: 15 }}
+            >
+              <CheckCircle2 className="w-6 h-6 md:w-8 md:h-8 text-green-600" />
+            </motion.div>
+          ) : (
+            <Circle className="w-6 h-6 md:w-8 md:h-8 text-gray-400" />
+          )}
+        </div>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-1.5 md:gap-2 mb-1">
+            <IconComponent className="w-4 h-4 md:w-5 md:h-5 text-blue-600 flex-shrink-0" />
+            <h4 className={`text-sm md:text-base font-semibold ${
+              item.checked ? 'text-green-800 line-through' : 'text-gray-800'
+            }`}>
+              {item.title}
+            </h4>
+          </div>
+          <p className={`text-xs md:text-sm ${
+            item.checked ? 'text-green-700' : 'text-gray-600'
+          }`}>
+            {item.description}
+          </p>
+        </div>
+      </div>
+    </motion.div>
+  )
+})
 
 const Checklist = () => {
   const initialItems: ChecklistItem[] = [
@@ -349,34 +405,58 @@ const Checklist = () => {
 
   const [showConfetti, setShowConfetti] = useState(false)
 
+  // Debounced localStorage save - only save after user stops clicking
   useEffect(() => {
-    try {
-      localStorage.setItem('checklistItems', JSON.stringify(items))
-    } catch (error) {
-      console.error('Error saving checklist to localStorage:', error)
-    }
+    const timeoutId = setTimeout(() => {
+      try {
+        localStorage.setItem('checklistItems', JSON.stringify(items))
+      } catch (error) {
+        console.error('Error saving checklist to localStorage:', error)
+      }
+    }, 300) // Wait 300ms after last change before saving
 
-    // Check if all items are checked
+    return () => clearTimeout(timeoutId)
+  }, [items])
+
+  // Check for completion and show confetti
+  useEffect(() => {
     const allChecked = items.every(item => item.checked)
     if (allChecked && items.length > 0) {
       setShowConfetti(true)
-      setTimeout(() => setShowConfetti(false), 3000)
+      const timer = setTimeout(() => setShowConfetti(false), 3000)
+      return () => clearTimeout(timer)
     }
   }, [items])
 
-  const toggleItem = (id: string) => {
-    setItems(items.map(item =>
-      item.id === id ? { ...item, checked: !item.checked } : item
-    ))
-  }
+  // Memoized toggle function to prevent unnecessary re-renders
+  const toggleItem = useCallback((id: string) => {
+    setItems(prevItems =>
+      prevItems.map(item =>
+        item.id === id ? { ...item, checked: !item.checked } : item
+      )
+    )
+  }, [])
 
-  const resetChecklist = () => {
-    setItems(items.map(item => ({ ...item, checked: false })))
-  }
+  // Memoized reset function
+  const resetChecklist = useCallback(() => {
+    setItems(prevItems => prevItems.map(item => ({ ...item, checked: false })))
+  }, [])
 
-  const categories = Array.from(new Set(items.map(item => item.category)))
-  const checkedCount = items.filter(item => item.checked).length
-  const progress = (checkedCount / items.length) * 100
+  // Memoize expensive calculations
+  const categories = useMemo(
+    () => Array.from(new Set(items.map(item => item.category))),
+    [items]
+  )
+
+  const checkedCount = useMemo(
+    () => items.filter(item => item.checked).length,
+    [items]
+  )
+
+  const progress = useMemo(
+    () => (checkedCount / items.length) * 100,
+    [checkedCount, items.length]
+  )
 
   return (
     <div className="max-w-4xl mx-auto px-3 md:px-4">
@@ -462,51 +542,12 @@ const Checklist = () => {
             {items
               .filter(item => item.category === category)
               .map((item, index) => (
-                <motion.div
+                <ChecklistItemComponent
                   key={item.id}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.05 }}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={() => toggleItem(item.id)}
-                  className={`card cursor-pointer transition-all duration-300 p-3 md:p-4 ${
-                    item.checked
-                      ? 'bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-300'
-                      : 'hover:shadow-xl'
-                  }`}
-                >
-                  <div className="flex items-start gap-2 md:gap-4">
-                    <div className="flex-shrink-0">
-                      {item.checked ? (
-                        <motion.div
-                          initial={{ scale: 0 }}
-                          animate={{ scale: 1 }}
-                          transition={{ type: 'spring', stiffness: 500, damping: 15 }}
-                        >
-                          <CheckCircle2 className="w-6 h-6 md:w-8 md:h-8 text-green-600" />
-                        </motion.div>
-                      ) : (
-                        <Circle className="w-6 h-6 md:w-8 md:h-8 text-gray-400" />
-                      )}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-1.5 md:gap-2 mb-1">
-                        {React.createElement(iconMap[item.iconName] || Package, { className: "w-4 h-4 md:w-5 md:h-5 text-blue-600 flex-shrink-0" })}
-                        <h4 className={`text-sm md:text-base font-semibold ${
-                          item.checked ? 'text-green-800 line-through' : 'text-gray-800'
-                        }`}>
-                          {item.title}
-                        </h4>
-                      </div>
-                      <p className={`text-xs md:text-sm ${
-                        item.checked ? 'text-green-700' : 'text-gray-600'
-                      }`}>
-                        {item.description}
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
+                  item={item}
+                  index={index}
+                  onToggle={toggleItem}
+                />
               ))}
           </div>
         </motion.div>
