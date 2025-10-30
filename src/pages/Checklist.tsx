@@ -63,7 +63,7 @@ const Checklist = () => {
   const initialItems: ChecklistItem[] = [
     {
       id: '1',
-      category: 'Csatlakozás',
+      category: 'Csatlakozás és vonófej',
       iconName: 'LinkIcon',
       title: 'Vonóhorog ellenőrzése',
       description: 'Nincs repedés, rozsdásodás vagy deformáció. Rázd meg, hogy rögzítve legyen.',
@@ -71,7 +71,7 @@ const Checklist = () => {
     },
     {
       id: '2',
-      category: 'Csatlakozás',
+      category: 'Csatlakozás és vonófej',
       iconName: 'Shield',
       title: 'Biztonsági lánc/kábel',
       description: 'Keresztbe kötve (X alakban), ne érjen a földhöz. Nincs sérült vagy kopott rész.',
@@ -79,7 +79,7 @@ const Checklist = () => {
     },
     {
       id: '3',
-      category: 'Csatlakozás',
+      category: 'Csatlakozás és vonófej',
       iconName: 'LinkIcon',
       title: 'Csatlakozó golyó',
       description: 'Tiszta, enyhén kenve. Csatlakozó rácsukódott, retesz bekapcsolva.',
@@ -87,7 +87,7 @@ const Checklist = () => {
     },
     {
       id: '4',
-      category: 'Világítás',
+      category: 'Világítás és elektromos',
       iconName: 'Lightbulb',
       title: 'Hátsó lámpák',
       description: 'Féklámpák, helyzetjelzők, irányjelzők, tolatólámpa működik.',
@@ -95,7 +95,7 @@ const Checklist = () => {
     },
     {
       id: '5',
-      category: 'Világítás',
+      category: 'Világítás és elektromos',
       iconName: 'Lightbulb',
       title: 'Elektromos csatlakozás',
       description: 'Tiszta, száraz, korróziómentes. Szorosan illeszkedik.',
@@ -103,7 +103,7 @@ const Checklist = () => {
     },
     {
       id: '6',
-      category: 'Kerekek',
+      category: 'Kerekek és futómű',
       iconName: 'Gauge',
       title: 'Gumiabroncs nyomás',
       description: 'Megfelelő nyomás minden keréken (érték a pótkocsi oldalfalán).',
@@ -111,7 +111,7 @@ const Checklist = () => {
     },
     {
       id: '7',
-      category: 'Kerekek',
+      category: 'Kerekek és futómű',
       iconName: 'Gauge',
       title: 'Gumiabroncs állapot',
       description: 'Nincs repedés, vágás, dudor. Futófelület min. 1,6 mm (3 mm ajánlott).',
@@ -119,7 +119,7 @@ const Checklist = () => {
     },
     {
       id: '8',
-      category: 'Kerekek',
+      category: 'Kerekek és futómű',
       iconName: 'Wrench',
       title: 'Kerékanyák',
       description: 'Minden anya a helyén, nincs laza. Új pótkocsinál: 100-120 Nm.',
@@ -127,7 +127,7 @@ const Checklist = () => {
     },
     {
       id: '9',
-      category: 'Tükrök',
+      category: 'Indulás előtti ellenőrzés',
       iconName: 'Eye',
       title: 'Külső tükrök beállítása',
       description: 'Látható a pótkocsi teljes hossza mindkét oldalon.',
@@ -135,7 +135,7 @@ const Checklist = () => {
     },
     {
       id: '10',
-      category: 'Rakomány',
+      category: 'Rakomány és terhelés',
       iconName: 'Package',
       title: 'Rakomány rögzítése',
       description: 'Hevederekkel/kötelekkel rögzítve. Nem mozog, ha megrázod.',
@@ -143,7 +143,7 @@ const Checklist = () => {
     },
     {
       id: '11',
-      category: 'Rakomány',
+      category: 'Rakomány és terhelés',
       iconName: 'Package',
       title: 'Súlyelosztás',
       description: '60% elöl, 40% hátul. Vonóhorog terhelés: 50-100 kg.',
@@ -151,7 +151,7 @@ const Checklist = () => {
     },
     {
       id: '12',
-      category: 'Rakomány',
+      category: 'Rakomány és terhelés',
       iconName: 'AlertTriangle',
       title: 'Maximális terhelés',
       description: 'Max. 4250 kg (teljes szerelvény). Lásd pótkocsi adattábla.',
@@ -191,7 +191,7 @@ const Checklist = () => {
     },
     {
       id: '17',
-      category: 'Kenés és karbantartás',
+      category: 'Karbantartás és felszerelés',
       iconName: 'Droplet',
       title: 'Vonófej és csatlakozások kenése',
       description: 'Gömbfej, golyó, csatlakozások kenve. Nincs túlzott kopás.',
@@ -199,7 +199,7 @@ const Checklist = () => {
     },
     {
       id: '18',
-      category: 'Kenés és karbantartás',
+      category: 'Karbantartás és felszerelés',
       iconName: 'Wrench',
       title: 'Támasztó kerék (jockey wheel)',
       description: 'Könnyen mozgatható, rögzítő csap tart. Kend meg, ha nyikorog.',
@@ -207,7 +207,7 @@ const Checklist = () => {
     },
     {
       id: '19',
-      category: 'Tartalék felszerelés',
+      category: 'Karbantartás és felszerelés',
       iconName: 'LifeBuoy',
       title: 'Tartalék kerék és szerszámok',
       description: 'Tartalék kerék jó állapotban. Jack és kerékkulcs megvan.',
@@ -215,7 +215,7 @@ const Checklist = () => {
     },
     {
       id: '20',
-      category: 'Tartalék felszerelés',
+      category: 'Karbantartás és felszerelés',
       iconName: 'Hammer',
       title: 'Rögzítő eszközök állapota',
       description: 'Hevederek, kötelek, láncok épek. Horgok nem rozsdásak/hajlottak.',
@@ -223,7 +223,7 @@ const Checklist = () => {
     },
     {
       id: '21',
-      category: 'Tartalék felszerelés',
+      category: 'Karbantartás és felszerelés',
       iconName: 'Package',
       title: 'Biztonsági felszerelés',
       description: 'Kesztyű, mellény, elsősegély doboz, háromszög.',
@@ -231,7 +231,7 @@ const Checklist = () => {
     },
     {
       id: '22',
-      category: 'Utolsó ellenőrzés',
+      category: 'Indulás előtti ellenőrzés',
       iconName: 'ClipboardCheck',
       title: 'Körbesétálás (Walk-around)',
       description: 'Vonófej OK, lánc OK, csatlakozó OK, lámpák OK, rakomány OK.',
@@ -239,7 +239,7 @@ const Checklist = () => {
     },
     {
       id: '23',
-      category: 'Utolsó ellenőrzés',
+      category: 'Indulás előtti ellenőrzés',
       iconName: 'AlertTriangle',
       title: 'Terhelés és stabilitás végső ellenőrzése',
       description: 'Max. terhelés OK. Vonóhorog: 50-100 kg. Súlyelosztás: 60/40%.',
@@ -247,7 +247,7 @@ const Checklist = () => {
     },
     {
       id: '24',
-      category: 'Elektromos rendszer',
+      category: 'Világítás és elektromos',
       iconName: 'Battery',
       title: 'Akkumulátor (ha van)',
       description: 'Töltöttség OK, saruk tiszták (lakókocsi/fékrendszeres utánfutó).',
@@ -255,7 +255,7 @@ const Checklist = () => {
     },
     {
       id: '25',
-      category: 'Futómű és tengely',
+      category: 'Kerekek és futómű',
       iconName: 'Settings',
       title: 'Futómű / tengelycsatlakozás',
       description: 'Nincs olajfolyás, hajlás, repedés. Laprugók és csapágyak jók.',
@@ -263,7 +263,7 @@ const Checklist = () => {
     },
     {
       id: '26',
-      category: 'Futómű és tengely',
+      category: 'Kerekek és futómű',
       iconName: 'Disc',
       title: 'Kerékcsapágy hang / játék',
       description: 'Kerék nem zúg, nincs oldalirányú játék. Csapágyak zsírozva.',
@@ -271,7 +271,7 @@ const Checklist = () => {
     },
     {
       id: '27',
-      category: 'Vonófej részletesen',
+      category: 'Csatlakozás és vonófej',
       iconName: 'Anchor',
       title: 'Vonófej rögzítése a pótkocsihoz',
       description: 'Csavarok és hegesztések épek. Teljes rögzítés stabil.',
@@ -279,7 +279,7 @@ const Checklist = () => {
     },
     {
       id: '28',
-      category: 'Vonófej részletesen',
+      category: 'Csatlakozás és vonófej',
       iconName: 'Settings',
       title: 'Stabilizátor kar / súrlódó betétek',
       description: 'Stabilizátor működik, betétek nem kopottak (ha van).',
@@ -287,7 +287,7 @@ const Checklist = () => {
     },
     {
       id: '29',
-      category: 'Biztonság és kötelező felszerelés',
+      category: 'Karbantartás és felszerelés',
       iconName: 'Package',
       title: 'Elsősegély csomag érvényessége',
       description: 'Elsősegély doboz szavatossága érvényes.',
@@ -295,7 +295,7 @@ const Checklist = () => {
     },
     {
       id: '30',
-      category: 'Biztonság és kötelező felszerelés',
+      category: 'Karbantartás és felszerelés',
       iconName: 'FlameKindling',
       title: 'Tűzoltó készülék',
       description: 'Tűzoltó készülék töltött és hitelesített (lakókocsi/nagy pótkocsi).',
@@ -303,7 +303,7 @@ const Checklist = () => {
     },
     {
       id: '31',
-      category: 'Egyéb gyakorlati pontok',
+      category: 'Indulás előtti ellenőrzés',
       iconName: 'Hash',
       title: 'Rendszámtábla és tartó',
       description: 'Rendszámtábla olvasható, megvilágított, tartó rögzítve.',
@@ -311,7 +311,7 @@ const Checklist = () => {
     },
     {
       id: '32',
-      category: 'Egyéb gyakorlati pontok',
+      category: 'Indulás előtti ellenőrzés',
       iconName: 'Lock',
       title: 'Ponyva / fedél / ajtózárak',
       description: 'Ponyva, fedél, ajtók biztonságosan záródnak.',
@@ -319,7 +319,7 @@ const Checklist = () => {
     },
     {
       id: '33',
-      category: 'Egyéb gyakorlati pontok',
+      category: 'Indulás előtti ellenőrzés',
       iconName: 'Shield',
       title: 'Kézifék kioldása indulás előtt',
       description: 'Kézifék teljesen kioldva indulás előtt.',
