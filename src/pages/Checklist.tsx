@@ -13,6 +13,10 @@ import {
   Package,
   Wrench,
   FileCheck,
+  Droplet,
+  LifeBuoy,
+  Hammer,
+  ClipboardCheck,
 } from 'lucide-react'
 
 interface ChecklistItem {
@@ -35,6 +39,10 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Package: Package,
   AlertTriangle: AlertTriangle,
   FileCheck: FileCheck,
+  Droplet: Droplet,
+  LifeBuoy: LifeBuoy,
+  Hammer: Hammer,
+  ClipboardCheck: ClipboardCheck,
 }
 
 const Checklist = () => {
@@ -165,6 +173,62 @@ const Checklist = () => {
       iconName: 'FileCheck',
       title: 'Jogosítvány',
       description: 'Győződj meg róla, hogy a BE kategóriás jogosítványod érvényes és nálad van. A BE kategória 750 kg-nál nehezebb pótkocsi vontatásához szükséges. Ellenőrizd a jogosítvány érvényességi idejét - ha lejárt, nem vezethetsz pótkocsival. Ha 2013 előtt szerezted a B kategóriát, automatikusan jogosult vagy BE kategóriára is. Ha utána, külön vizsgát kellett tenned. Külföldi útnál ellenőrizd, hogy a jogosítványod érvényes-e az adott országban.',
+      checked: false,
+    },
+    {
+      id: '17',
+      category: 'Kenés és karbantartás',
+      iconName: 'Droplet',
+      title: 'Vonófej és csatlakozások kenése',
+      description: 'A vonóhorog gömbfejét, a csatlakozó golyót és az összes csuklós csatlakozást rendszeresen kenni kell. Használj megfelelő kenőanyagot (pl. réz- vagy grafit alapú kenőzsírt), ami csökkenti a súrlódást és megakadályozza a rozsdásodást. Ellenőrizd, hogy nincs-e túlzott kopás a mozgó részeken - a kopott alkatrészek rázkódást, zajt és instabilitást okoznak. A száraz, rozsdás csatlakozások gyorsabban kopnak és meghibásodhatnak. Sok kapcsolódási probléma innen ered, ezért ne hagyd figyelmen kívül!',
+      checked: false,
+    },
+    {
+      id: '18',
+      category: 'Kenés és karbantartás',
+      iconName: 'Wrench',
+      title: 'Támasztó kerék (jockey wheel)',
+      description: 'A pótkocsi támasztó kerekének (jockey wheel) simán kell működnie - ellenőrizd, hogy könnyen fel-le mozgatható-e, és a rögzítő csap biztonságosan tartja-e. Kend meg a csúszó részeket és a forgó kereket, ha nyikorog vagy nehezen mozog. Ellenőrizd a kerék állapotát - nem defekt-e, jól forog-e. A támasztó kerék fontos a pótkocsi biztonságos leválasztásához és csatlakoztatásához. Ha leragad vagy nem működik megfelelően, nehéz lesz manőverezni a pótkocsit.',
+      checked: false,
+    },
+    {
+      id: '19',
+      category: 'Tartalék felszerelés',
+      iconName: 'LifeBuoy',
+      title: 'Tartalék kerék és szerszámok',
+      description: 'Ellenőrizd, hogy a pótkocsihoz tartozik-e tartalék kerék, és az jó állapotban van-e (nem defekt, megfelelő nyomás, nincs túl öreg). Meglepően sokan elfelejtik, hogy az utánfutónak is kell tartalék! Győződj meg róla, hogy van emelő (jack) és kerékkulcs, ami passzol a pótkocsi kerékanyáihoz. Teszteld, hogy a kerékkulcs tényleg illeszkedik-e - sok pótkocsi más méretű anyákat használ, mint az autó. Tárold ezeket könnyen elérhető helyen, lehetőleg a pótkocsin vagy az autóban.',
+      checked: false,
+    },
+    {
+      id: '20',
+      category: 'Tartalék felszerelés',
+      iconName: 'Hammer',
+      title: 'Rögzítő eszközök állapota',
+      description: 'Vizsgáld meg alaposan az összes spanifer/heveder, rögzítő kötél és lánc állapotát. Keress kopott, szálas, szakadozó részeket a hevedereken - ezek veszélyesek és cserélni kell őket. Ellenőrizd a fém horgokat és csatokat - nincsenek-e meghajolva, repedve vagy rozsdásodva. A rozsdás vagy sérült horgok hirtelen elszakadhatnak terhelés alatt. Soha ne használj sérült rögzítő eszközöket! Mindig legyen tartalék heveder vagy kötél az autóban/pótkocsin. Jó minőségű rögzítő eszközök életet menthetnek.',
+      checked: false,
+    },
+    {
+      id: '21',
+      category: 'Tartalék felszerelés',
+      iconName: 'Package',
+      title: 'Biztonsági felszerelés',
+      description: 'Opcionális, de erősen ajánlott: tarts az autóban/pótkocsin munkakesztyűt (a kezed védelméhez hevederezéskor, kerékcsere során), fényvisszaverő mellényt (ha az út szélén kell dolgoznod), elsősegély dobozt és figyelmeztető háromszöget. Ha gyakran használod a pótkocsit, érdemes beszerezni egy kis szerszámkészletet is (csavarhúzó, fogó, szigetelőszalag, kábelkötegelő). Ezek apróságok, de kritikus helyzetben sokat segíthetnek.',
+      checked: false,
+    },
+    {
+      id: '22',
+      category: 'Utolsó ellenőrzés',
+      iconName: 'ClipboardCheck',
+      title: 'Körbesétálás (Walk-around)',
+      description: 'Mielőtt elindulsz, végezz el egy utolsó körbesétálást a teljes szerelvény körül. Nézd meg újra: vonófej biztonságosan csatlakozik, biztonsági lánc keresztbe van kötve, elektromos csatlakozó be van dugva, minden lámpa működik, kerekek jó állapotban, rakomány biztonságosan rögzítve, semmi nem lóg le vagy érint a földet. Ez az utolsó "sanity check" - sok balesetet meg lehet előzni egy gyors körbesétálással. Szokj rá, hogy ezt minden indulás előtt megteszed!',
+      checked: false,
+    },
+    {
+      id: '23',
+      category: 'Utolsó ellenőrzés',
+      iconName: 'AlertTriangle',
+      title: 'Terhelés és stabilitás végső ellenőrzése',
+      description: 'Az indulás előtt még egyszer gondold át a teljes terhelést. A pótkocsi + rakomány összsúlya nem haladhatja meg a megengedett értéket. A vonóhorogra eső terhelés (50-100 kg) megfelelő-e? A súlyelosztás helyes (60% elöl, 40% hátul)? Ha bizonytalan vagy, jobb egy mérlegre menni. Túlterhelés esetén a fékút megnő, a stabilitás csökken, és törvénysértést követsz el. Ha minden rendben, indulás után az első néhány kilométeren figyelj a pótkocsi viselkedésére - ha instabilitást, rázkódást vagy szokatlan zajt észlelsz, állj meg és ellenőrizd újra!',
       checked: false,
     },
   ]
