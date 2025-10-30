@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { ClipboardCheck, BookOpen, Truck, Shield } from 'lucide-react'
+import { ClipboardCheck, BookOpen, Shield } from 'lucide-react'
 
 const Home = () => {
   const features = [
