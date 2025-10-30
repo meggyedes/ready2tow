@@ -72,7 +72,6 @@ const ChecklistItemComponent = React.memo<{
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay: index * 0.05 }}
-      whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       onClick={() => onToggle(item.id)}
       className={`card cursor-pointer transition-all duration-300 p-3 md:p-4 ${
