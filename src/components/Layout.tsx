@@ -10,12 +10,17 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
   const location = useLocation()
 
-  // Scroll to top on route change with a small delay to prevent flickering
+  // Scroll to top on route change
   useEffect(() => {
     // Use requestAnimationFrame to ensure scroll happens after render
     requestAnimationFrame(() => {
       window.scrollTo({ top: 0, behavior: 'instant' })
     })
+
+    // Debug: Log route changes (remove in production)
+    if (import.meta.env.DEV) {
+      console.log('📍 Route changed to:', location.pathname)
+    }
   }, [location.pathname])
 
   const navItems = [
