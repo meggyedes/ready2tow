@@ -334,10 +334,9 @@ const Checklist = () => {
         const parsed = JSON.parse(saved)
         // Validate that parsed data has the correct structure AND correct length
         if (Array.isArray(parsed) && parsed.length === initialItems.length) {
-          console.log(`✅ Loaded ${parsed.length} items from localStorage`)
           return parsed
         } else {
-          console.log(`⚠️ localStorage has ${parsed?.length || 0} items, but code has ${initialItems.length} items. Using fresh data.`)
+          // localStorage has wrong number of items, clear it
           localStorage.removeItem('checklistItems')
         }
       }
@@ -345,7 +344,6 @@ const Checklist = () => {
       console.error('Error loading checklist from localStorage:', error)
       localStorage.removeItem('checklistItems')
     }
-    console.log(`🆕 Initializing with ${initialItems.length} fresh items`)
     return initialItems
   })
 

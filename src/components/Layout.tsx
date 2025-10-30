@@ -16,11 +16,6 @@ const Layout = ({ children }: LayoutProps) => {
     requestAnimationFrame(() => {
       window.scrollTo({ top: 0, behavior: 'instant' })
     })
-
-    // Debug: Log route changes (remove in production)
-    if (import.meta.env.DEV) {
-      console.log('📍 Route changed to:', location.pathname)
-    }
   }, [location.pathname])
 
   const navItems = [
@@ -72,15 +67,21 @@ const Layout = ({ children }: LayoutProps) => {
             {navItems.map((item) => {
               const Icon = item.icon
               const isActive = location.pathname === item.path
-              
+
               return (
                 <Link
                   key={item.path}
                   to={item.path}
                   className="flex-1"
+                  onClick={(e) => {
+                    // Prevent navigation if already on this page
+                    if (isActive) {
+                      e.preventDefault()
+                    }
+                  }}
                 >
                   <motion.div
-                    whileTap={{ scale: 0.95 }}
+                    whileTap={!isActive ? { scale: 0.95 } : {}}
                     className={`flex flex-col items-center py-2 px-3 rounded-xl transition-all duration-300 ${
                       isActive
                         ? 'text-blue-600'
