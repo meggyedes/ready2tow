@@ -66,7 +66,7 @@ const Checklist = () => {
       category: 'Csatlakozás',
       iconName: 'LinkIcon',
       title: 'Vonóhorog ellenőrzése',
-      description: 'Ellenőrizd, hogy nincs-e repedés, rozsdásodás vagy deformáció. Rázd meg, hogy biztosan rögzítve legyen. A vonóhorog a legfontosabb kapcsolat, ezért kritikus állapotban legyen.',
+      description: 'Nincs repedés, rozsdásodás vagy deformáció. Rázd meg, hogy rögzítve legyen.',
       checked: false,
     },
     {
@@ -74,7 +74,7 @@ const Checklist = () => {
       category: 'Csatlakozás',
       iconName: 'Shield',
       title: 'Biztonsági lánc/kábel',
-      description: 'A lánc legyen keresztbe kötve (X alakban) a vonóhorog alatt. Ne érjen a földhöz, de legyen elég laza a kanyarodáshoz. Ellenőrizd, hogy nincsenek-e sérült vagy kopott részek.',
+      description: 'Keresztbe kötve (X alakban), ne érjen a földhöz. Nincs sérült vagy kopott rész.',
       checked: false,
     },
     {
@@ -82,7 +82,7 @@ const Checklist = () => {
       category: 'Csatlakozás',
       iconName: 'LinkIcon',
       title: 'Csatlakozó golyó',
-      description: 'A golyó legyen tiszta és enyhén kenve. Ellenőrizd, hogy a csatlakozó teljesen rácsukódott-e, és a retesz be van-e kapcsolva. Próbáld meg felemelni a pótkocsi rúdját - nem szabad leválnia.',
+      description: 'Tiszta, enyhén kenve. Csatlakozó rácsukódott, retesz bekapcsolva.',
       checked: false,
     },
     {
@@ -90,7 +90,7 @@ const Checklist = () => {
       category: 'Világítás',
       iconName: 'Lightbulb',
       title: 'Hátsó lámpák',
-      description: 'Teszteld az összes lámpát: féklámpák, helyzetjelzők, irányjelzők, tolatólámpa és rendszámtábla világítás. Minden lámpának működnie kell, mert ezekből tudják meg a szándékaidat.',
+      description: 'Féklámpák, helyzetjelzők, irányjelzők, tolatólámpa működik.',
       checked: false,
     },
     {
@@ -98,7 +98,7 @@ const Checklist = () => {
       category: 'Világítás',
       iconName: 'Lightbulb',
       title: 'Elektromos csatlakozás',
-      description: 'A csatlakozó legyen tiszta, száraz és korróziómentes. Ellenőrizd, hogy szorosan illeszkedik-e. Ha piszkos, tisztítsd meg száraz ruhával vagy kontakt spray-vel.',
+      description: 'Tiszta, száraz, korróziómentes. Szorosan illeszkedik.',
       checked: false,
     },
     {
@@ -106,7 +106,7 @@ const Checklist = () => {
       category: 'Kerekek',
       iconName: 'Gauge',
       title: 'Gumiabroncs nyomás',
-      description: 'Mérj nyomást minden keréken (a megfelelő érték a pótkocsi oldalfalán van). Túl alacsony nyomás defekthez vezethet, túl magas csökkenti a tapadást. Hideg gumikon mérj.',
+      description: 'Megfelelő nyomás minden keréken (érték a pótkocsi oldalfalán).',
       checked: false,
     },
     {
@@ -114,7 +114,7 @@ const Checklist = () => {
       category: 'Kerekek',
       iconName: 'Gauge',
       title: 'Gumiabroncs állapot',
-      description: 'Keress repedéseket, vágásokat, dudorokat vagy egyenetlen kopást. A futófelület legalább 1,6 mm mély legyen (3 mm ajánlott). Ha a gumi 6 évnél öregebb, fontold meg a cseréjét.',
+      description: 'Nincs repedés, vágás, dudor. Futófelület min. 1,6 mm (3 mm ajánlott).',
       checked: false,
     },
     {
@@ -122,7 +122,7 @@ const Checklist = () => {
       category: 'Kerekek',
       iconName: 'Wrench',
       title: 'Kerékanyák',
-      description: 'Ellenőrizd, hogy minden kerékanya a helyén van és nincs laza. Új pótkocsinál használj nyomatékkulcsot (100-120 Nm). Az első 50-100 km után ellenőrizd újra.',
+      description: 'Minden anya a helyén, nincs laza. Új pótkocsinál: 100-120 Nm.',
       checked: false,
     },
     {
@@ -130,7 +130,7 @@ const Checklist = () => {
       category: 'Tükrök',
       iconName: 'Eye',
       title: 'Külső tükrök beállítása',
-      description: 'Állítsd be a tükröket úgy, hogy lásd a pótkocsi teljes hosszát mindkét oldalon és a mögötted lévő forgalmat. Szélesebb pótkocsinál póttükrökre lehet szükség.',
+      description: 'Látható a pótkocsi teljes hossza mindkét oldalon.',
       checked: false,
     },
     {
@@ -138,7 +138,7 @@ const Checklist = () => {
       category: 'Rakomány',
       iconName: 'Package',
       title: 'Rakomány rögzítése',
-      description: 'Rögzítsd a rakományt hevederekkel, kötelekkel vagy hálóval. Próbáld meg megrázni - nem szabad mozognia. Használj több rögzítési pontot és keresztbe húzott hevedereket.',
+      description: 'Hevederekkel/kötelekkel rögzítve. Nem mozog, ha megrázod.',
       checked: false,
     },
     {
@@ -146,7 +146,7 @@ const Checklist = () => {
       category: 'Rakomány',
       iconName: 'Package',
       title: 'Súlyelosztás',
-      description: 'A rakomány 60%-a legyen elöl, 40%-a hátul. Ez biztosítja a megfelelő terhelést a vonóhorogra (50-100 kg). Túl sok súly hátul instabilitást okoz.',
+      description: '60% elöl, 40% hátul. Vonóhorog terhelés: 50-100 kg.',
       checked: false,
     },
     {
@@ -154,7 +154,7 @@ const Checklist = () => {
       category: 'Rakomány',
       iconName: 'AlertTriangle',
       title: 'Maximális terhelés',
-      description: 'Ne lépd túl a megengedett össztömeget (pótkocsi adattáblája). BE kategóriával a teljes szerelvény max. 4250 kg. Ha bizonytalan vagy, menj mérlegre.',
+      description: 'Max. 4250 kg (teljes szerelvény). Lásd pótkocsi adattábla.',
       checked: false,
     },
     {
@@ -162,7 +162,7 @@ const Checklist = () => {
       category: 'Fékek',
       iconName: 'Shield',
       title: 'Pótkocsi fékek',
-      description: 'Ha van saját fékrendszer (750 kg felett kötelező), próbáld ki alacsony sebességnél. Ellenőrizd a fékfolyadék szintjét vagy a bowden kábelek állapotát.',
+      description: 'Próbáld ki alacsony sebességnél. Ellenőrizd a fékfolyadékot vagy bowden kábelt.',
       checked: false,
     },
     {
@@ -170,7 +170,7 @@ const Checklist = () => {
       category: 'Fékek',
       iconName: 'Shield',
       title: 'Rögzítőfék',
-      description: 'Húzd be a kéziféket teljesen, majd próbáld meg eltolni a pótkocsit - nem szabad mozdulnia. Indulás előtt győződj meg róla, hogy kioldottad!',
+      description: 'Kézifék behúzva a pótkocsi nem mozdul. Indulás előtt kioldva!',
       checked: false,
     },
     {
@@ -178,7 +178,7 @@ const Checklist = () => {
       category: 'Dokumentumok',
       iconName: 'FileCheck',
       title: 'Pótkocsi papírok',
-      description: 'Ellenőrizd, hogy a forgalmi engedély és a kötelező biztosítás érvényes-e. Ezeknek mindig nálad kell lenniük. Bérelt pótkocsinál a bérleti szerződés is kell.',
+      description: 'Forgalmi engedély és biztosítás érvényes. Bérelt pótkocsinál bérleti szerződés.',
       checked: false,
     },
     {
@@ -186,7 +186,7 @@ const Checklist = () => {
       category: 'Dokumentumok',
       iconName: 'FileCheck',
       title: 'Jogosítvány',
-      description: 'A BE kategóriás jogosítványod legyen érvényes és nálad. 750 kg-nál nehezebb pótkocsihoz szükséges. 2013 előtti B kategória automatikusan jogosít BE-re.',
+      description: 'BE kategória érvényes és nálad (750 kg+ pótkocsihoz).',
       checked: false,
     },
     {
@@ -194,7 +194,7 @@ const Checklist = () => {
       category: 'Kenés és karbantartás',
       iconName: 'Droplet',
       title: 'Vonófej és csatlakozások kenése',
-      description: 'Kend meg a vonóhorog gömbfejét, a csatlakozó golyót és a csuklós csatlakozásokat. Használj réz- vagy grafit alapú kenőzsírt. Ellenőrizd, hogy nincs-e túlzott kopás.',
+      description: 'Gömbfej, golyó, csatlakozások kenve. Nincs túlzott kopás.',
       checked: false,
     },
     {
@@ -202,7 +202,7 @@ const Checklist = () => {
       category: 'Kenés és karbantartás',
       iconName: 'Wrench',
       title: 'Támasztó kerék (jockey wheel)',
-      description: 'Ellenőrizd, hogy könnyen fel-le mozgatható-e, és a rögzítő csap biztonságosan tart-e. Kend meg, ha nyikorog vagy nehezen mozog. Ellenőrizd a kerék állapotát.',
+      description: 'Könnyen mozgatható, rögzítő csap tart. Kend meg, ha nyikorog.',
       checked: false,
     },
     {
@@ -210,7 +210,7 @@ const Checklist = () => {
       category: 'Tartalék felszerelés',
       iconName: 'LifeBuoy',
       title: 'Tartalék kerék és szerszámok',
-      description: 'Ellenőrizd, hogy van-e tartalék kerék jó állapotban (megfelelő nyomás, nem túl öreg). Legyen emelő (jack) és kerékkulcs, ami passzol a pótkocsi kerékanyáihoz.',
+      description: 'Tartalék kerék jó állapotban. Jack és kerékkulcs megvan.',
       checked: false,
     },
     {
@@ -218,7 +218,7 @@ const Checklist = () => {
       category: 'Tartalék felszerelés',
       iconName: 'Hammer',
       title: 'Rögzítő eszközök állapota',
-      description: 'Vizsgáld meg a spanifer/hevederek, kötelek és láncok állapotát. Keress kopott, szálas részeket. Ellenőrizd a horgokat és csatokat - ne legyenek meghajolva vagy rozsdásak.',
+      description: 'Hevederek, kötelek, láncok épek. Horgok nem rozsdásak/hajlottak.',
       checked: false,
     },
     {
@@ -226,7 +226,7 @@ const Checklist = () => {
       category: 'Tartalék felszerelés',
       iconName: 'Package',
       title: 'Biztonsági felszerelés',
-      description: 'Ajánlott: munkakesztyű, fényvisszaverő mellény, elsősegély doboz, figyelmeztető háromszög. Gyakori használatnál kis szerszámkészlet is hasznos.',
+      description: 'Kesztyű, mellény, elsősegély doboz, háromszög.',
       checked: false,
     },
     {
@@ -234,7 +234,7 @@ const Checklist = () => {
       category: 'Utolsó ellenőrzés',
       iconName: 'ClipboardCheck',
       title: 'Körbesétálás (Walk-around)',
-      description: 'Indulás előtt sétálj körbe a szerelvény körül. Ellenőrizd: vonófej csatlakozik, lánc keresztbe kötve, csatlakozó bedugva, lámpák működnek, rakomány rögzítve, semmi nem lóg le.',
+      description: 'Vonófej OK, lánc OK, csatlakozó OK, lámpák OK, rakomány OK.',
       checked: false,
     },
     {
@@ -242,7 +242,7 @@ const Checklist = () => {
       category: 'Utolsó ellenőrzés',
       iconName: 'AlertTriangle',
       title: 'Terhelés és stabilitás végső ellenőrzése',
-      description: 'Gondold át a teljes terhelést. A pótkocsi + rakomány ne haladja meg a megengedett értéket. Vonóhorog terhelés: 50-100 kg. Súlyelosztás: 60% elöl, 40% hátul.',
+      description: 'Max. terhelés OK. Vonóhorog: 50-100 kg. Súlyelosztás: 60/40%.',
       checked: false,
     },
     {
@@ -250,7 +250,7 @@ const Checklist = () => {
       category: 'Elektromos rendszer',
       iconName: 'Battery',
       title: 'Akkumulátor (ha van)',
-      description: 'Ha a pótkocsinak van saját akkumulátora (pl. lakókocsi, fékrendszeres utánfutó), ellenőrizd a töltöttségét és a saruk tisztaságát. Korrodált sarukat tisztítsd meg.',
+      description: 'Töltöttség OK, saruk tiszták (lakókocsi/fékrendszeres utánfutó).',
       checked: false,
     },
     {
@@ -258,7 +258,7 @@ const Checklist = () => {
       category: 'Futómű és tengely',
       iconName: 'Settings',
       title: 'Futómű / tengelycsatlakozás',
-      description: 'Ellenőrizd, hogy nincs-e olajfolyás, hajlás, repedés vagy laza alkatrész. A laprugók és csapágyak ne legyenek túlzottan kopottak.',
+      description: 'Nincs olajfolyás, hajlás, repedés. Laprugók és csapágyak jók.',
       checked: false,
     },
     {
@@ -266,7 +266,7 @@ const Checklist = () => {
       category: 'Futómű és tengely',
       iconName: 'Disc',
       title: 'Kerékcsapágy hang / játék',
-      description: 'Forgasd meg a kereket, és figyelj, nem zúg-e. Ellenőrizd, nincs-e oldalirányú mozgás (játék). A csapágyak legyenek megfelelően zsírozva.',
+      description: 'Kerék nem zúg, nincs oldalirányú játék. Csapágyak zsírozva.',
       checked: false,
     },
     {
@@ -274,7 +274,7 @@ const Checklist = () => {
       category: 'Vonófej részletesen',
       iconName: 'Anchor',
       title: 'Vonófej rögzítése a pótkocsihoz',
-      description: 'Ellenőrizd a vonófej alatti csavarokat és hegesztéseket. Nem csak a golyókapcsolat, hanem az egész rögzítés legyen ép és stabil.',
+      description: 'Csavarok és hegesztések épek. Teljes rögzítés stabil.',
       checked: false,
     },
     {
@@ -282,7 +282,7 @@ const Checklist = () => {
       category: 'Vonófej részletesen',
       iconName: 'Settings',
       title: 'Stabilizátor kar / súrlódó betétek',
-      description: 'Ha van stabilizátor kar a vonófejen, ellenőrizd, hogy működik-e, és a súrlódó betétek nem kopottak-e el túlzottan.',
+      description: 'Stabilizátor működik, betétek nem kopottak (ha van).',
       checked: false,
     },
     {
@@ -290,7 +290,7 @@ const Checklist = () => {
       category: 'Biztonság és kötelező felszerelés',
       iconName: 'Package',
       title: 'Elsősegély csomag érvényessége',
-      description: 'Ellenőrizd az elsősegély doboz szavatosságát. Jogilag is számít ellenőrzéskor, hogy érvényes-e.',
+      description: 'Elsősegély doboz szavatossága érvényes.',
       checked: false,
     },
     {
@@ -298,7 +298,7 @@ const Checklist = () => {
       category: 'Biztonság és kötelező felszerelés',
       iconName: 'FlameKindling',
       title: 'Tűzoltó készülék',
-      description: 'Lakókocsinál vagy nagy pótkocsinál legyen kéznél tűzoltó készülék, megfelelően töltött és hitelesített.',
+      description: 'Tűzoltó készülék töltött és hitelesített (lakókocsi/nagy pótkocsi).',
       checked: false,
     },
     {
@@ -306,7 +306,7 @@ const Checklist = () => {
       category: 'Egyéb gyakorlati pontok',
       iconName: 'Hash',
       title: 'Rendszámtábla és tartó',
-      description: 'A rendszámtábla legyen jól olvasható, megvilágított, és a csavarok/tartó biztonságosan rögzítve.',
+      description: 'Rendszámtábla olvasható, megvilágított, tartó rögzítve.',
       checked: false,
     },
     {
@@ -314,7 +314,7 @@ const Checklist = () => {
       category: 'Egyéb gyakorlati pontok',
       iconName: 'Lock',
       title: 'Ponyva / fedél / ajtózárak',
-      description: 'Ellenőrizd, hogy a ponyva, fedél vagy ajtók biztonságosan záródnak, és nem csapódnak menet közben.',
+      description: 'Ponyva, fedél, ajtók biztonságosan záródnak.',
       checked: false,
     },
     {
@@ -322,7 +322,7 @@ const Checklist = () => {
       category: 'Egyéb gyakorlati pontok',
       iconName: 'Shield',
       title: 'Kézifék kioldása indulás előtt',
-      description: 'Indulás előtt győződj meg róla, hogy a pótkocsi kéziféke teljesen ki van oldva. Behúzott fékkel való vezetés károsítja a fékeket.',
+      description: 'Kézifék teljesen kioldva indulás előtt.',
       checked: false,
     },
   ]
@@ -376,17 +376,17 @@ const Checklist = () => {
   const progress = (checkedCount / items.length) * 100
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="max-w-4xl mx-auto px-3 md:px-4">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="mb-6"
+        className="mb-4 md:mb-6"
       >
-        <h2 className="text-3xl font-bold text-gray-800 mb-2">
+        <h2 className="text-xl md:text-3xl font-bold text-gray-800 mb-1 md:mb-2">
           Indulás Előtti Ellenőrzőlista
         </h2>
-        <p className="text-gray-600">
+        <p className="text-sm md:text-base text-gray-600">
           Menj végig minden ponton az indulás előtt a biztonságos vontatásért
         </p>
       </motion.div>
@@ -395,23 +395,23 @@ const Checklist = () => {
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="card mb-6"
+        className="card mb-4 md:mb-6 p-3 md:p-4"
       >
-        <div className="flex justify-between items-center mb-3">
-          <span className="text-lg font-semibold text-gray-800">
-            Haladás: {checkedCount}/{items.length}
+        <div className="flex justify-between items-center mb-2 md:mb-3">
+          <span className="text-sm md:text-lg font-semibold text-gray-800">
+            {checkedCount}/{items.length}
           </span>
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={resetChecklist}
-            className="flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
+            className="flex items-center gap-1 md:gap-2 px-2 md:px-4 py-1.5 md:py-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors text-xs md:text-sm"
           >
-            <RotateCcw size={18} />
-            <span className="text-sm font-medium">Újrakezdés</span>
+            <RotateCcw size={16} className="md:w-[18px] md:h-[18px]" />
+            <span className="font-medium">Újra</span>
           </motion.button>
         </div>
-        <div className="w-full bg-gray-200 rounded-full h-4 overflow-hidden">
+        <div className="w-full bg-gray-200 rounded-full h-2 md:h-4 overflow-hidden">
           <motion.div
             initial={{ width: 0 }}
             animate={{ width: `${progress}%` }}
@@ -449,13 +449,13 @@ const Checklist = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: categoryIndex * 0.1 }}
-          className="mb-6"
+          className="mb-4 md:mb-6"
         >
-          <h3 className="text-xl font-bold text-gray-800 mb-3 flex items-center">
-            <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+          <h3 className="text-base md:text-xl font-bold text-gray-800 mb-2 md:mb-3 flex items-center">
+            <span className="w-1.5 h-1.5 md:w-2 md:h-2 bg-blue-500 rounded-full mr-2"></span>
             {category}
           </h3>
-          <div className="space-y-3">
+          <div className="space-y-2 md:space-y-3">
             {items
               .filter(item => item.category === category)
               .map((item, index) => (
@@ -467,13 +467,13 @@ const Checklist = () => {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => toggleItem(item.id)}
-                  className={`card cursor-pointer transition-all duration-300 ${
+                  className={`card cursor-pointer transition-all duration-300 p-3 md:p-4 ${
                     item.checked
                       ? 'bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-300'
                       : 'hover:shadow-xl'
                   }`}
                 >
-                  <div className="flex items-start gap-4">
+                  <div className="flex items-start gap-2 md:gap-4">
                     <div className="flex-shrink-0">
                       {item.checked ? (
                         <motion.div
@@ -481,22 +481,22 @@ const Checklist = () => {
                           animate={{ scale: 1 }}
                           transition={{ type: 'spring', stiffness: 500, damping: 15 }}
                         >
-                          <CheckCircle2 className="w-8 h-8 text-green-600" />
+                          <CheckCircle2 className="w-6 h-6 md:w-8 md:h-8 text-green-600" />
                         </motion.div>
                       ) : (
-                        <Circle className="w-8 h-8 text-gray-400" />
+                        <Circle className="w-6 h-6 md:w-8 md:h-8 text-gray-400" />
                       )}
                     </div>
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        {React.createElement(iconMap[item.iconName] || Package, { className: "w-5 h-5 text-blue-600" })}
-                        <h4 className={`font-semibold ${
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-1.5 md:gap-2 mb-1">
+                        {React.createElement(iconMap[item.iconName] || Package, { className: "w-4 h-4 md:w-5 md:h-5 text-blue-600 flex-shrink-0" })}
+                        <h4 className={`text-sm md:text-base font-semibold ${
                           item.checked ? 'text-green-800 line-through' : 'text-gray-800'
                         }`}>
                           {item.title}
                         </h4>
                       </div>
-                      <p className={`text-sm ${
+                      <p className={`text-xs md:text-sm ${
                         item.checked ? 'text-green-700' : 'text-gray-600'
                       }`}>
                         {item.description}
