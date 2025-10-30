@@ -20,10 +20,6 @@ const Home = () => {
     },
   ]
 
-  const stats = [
-    { icon: Truck, label: 'Vontatás', value: 'BE Kategória' },
-    { icon: Shield, label: 'Biztonság', value: 'Első helyen' },
-  ]
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -49,23 +45,6 @@ const Home = () => {
           biztonságos vontatáshoz.
         </p>
       </motion.div>
-
-      {/* Stats */}
-      <div className="grid grid-cols-2 gap-4 mb-8">
-        {stats.map((stat, index) => (
-          <motion.div
-            key={stat.label}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: index * 0.1 + 0.3 }}
-            className="card text-center"
-          >
-            <stat.icon className="w-8 h-8 mx-auto mb-2 text-blue-600" />
-            <p className="text-sm text-gray-600">{stat.label}</p>
-            <p className="text-lg font-bold text-gray-800">{stat.value}</p>
-          </motion.div>
-        ))}
-      </div>
 
       {/* Feature Cards */}
       <div className="grid md:grid-cols-2 gap-6 mb-8">
