@@ -332,15 +332,20 @@ const Checklist = () => {
       const saved = localStorage.getItem('checklistItems')
       if (saved) {
         const parsed = JSON.parse(saved)
-        // Validate that parsed data has the correct structure
-        if (Array.isArray(parsed) && parsed.length > 0) {
+        // Validate that parsed data has the correct structure AND correct length
+        if (Array.isArray(parsed) && parsed.length === initialItems.length) {
+          console.log(`✅ Loaded ${parsed.length} items from localStorage`)
           return parsed
+        } else {
+          console.log(`⚠️ localStorage has ${parsed?.length || 0} items, but code has ${initialItems.length} items. Using fresh data.`)
+          localStorage.removeItem('checklistItems')
         }
       }
     } catch (error) {
       console.error('Error loading checklist from localStorage:', error)
       localStorage.removeItem('checklistItems')
     }
+    console.log(`🆕 Initializing with ${initialItems.length} fresh items`)
     return initialItems
   })
 
