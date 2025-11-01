@@ -24,7 +24,10 @@ import {
   FlameKindling,
   Hash,
   Lock,
+  Globe,
 } from 'lucide-react'
+import 'flag-icons/css/flag-icons.min.css'
+import { COUNTRIES, COUNTRY_FLAGS, internationalRules } from '../constants/internationalRules'
 
 interface ChecklistItem {
   id: string
@@ -33,6 +36,7 @@ interface ChecklistItem {
   title: string
   description: string
   checked: boolean
+  country?: string
 }
 
 // Icon mapping
@@ -100,6 +104,13 @@ const ChecklistItemComponent = React.memo<{
             <h4 className={`text-sm md:text-base font-semibold ${
               item.checked ? 'text-green-800 line-through' : 'text-gray-800'
             }`}>
+              {item.country && (
+                <span className="inline-flex items-center gap-1 mr-2">
+                  <div className={`fib fi-${COUNTRY_FLAGS[item.country]}`} style={{ width: '16px', height: '12px' }}></div>
+                  <span className="text-xs font-normal text-gray-600">{item.country}</span>
+                  <span className="text-gray-400">-</span>
+                </span>
+              )}
               {item.title}
             </h4>
           </div>
@@ -382,27 +393,95 @@ const Checklist = () => {
     },
   ]
 
+  // Load selected countries from localStorage
+  const [selectedCountries, setSelectedCountries] = useState<string[]>(() => {
+    try {
+      const saved = localStorage.getItem('selectedCountries')
+      if (saved) {
+        return JSON.parse(saved)
+      }
+    } catch (error) {
+      console.error('Error loading selected countries:', error)
+    }
+    return ['Magyarország'] // Default to Hungary
+  })
+
+  // Generate dynamic items based on selected countries
+  const generateDynamicItems = useCallback((): ChecklistItem[] => {
+    const dynamicItems: ChecklistItem[] = []
+    let idCounter = initialItems.length + 1
+
+    selectedCountries.forEach(country => {
+      if (country === 'Magyarország') return // Skip Hungary as it's already in initialItems
+
+      const countryRules = internationalRules.filter(rule => rule.country === country)
+
+      // Add equipment and toll rules
+      countryRules.forEach(rule => {
+        if (
+          rule.category === 'Kötelező Felszerelések' ||
+          rule.category === 'Díjak és Úthasználat' ||
+          rule.important
+        ) {
+          dynamicItems.push({
+            id: `dynamic-${idCounter}`,
+            category: `${country} - Nemzetközi Szabályok`,
+            iconName: 'Shield',
+            title: rule.title,
+            description: rule.content,
+            checked: false,
+            country: country,
+          })
+          idCounter++
+        }
+      })
+    })
+
+    return dynamicItems
+  }, [selectedCountries])
+
+  const dynamicItems = useMemo(() => generateDynamicItems(), [generateDynamicItems])
+
   const [items, setItems] = useState<ChecklistItem[]>(() => {
     try {
       const saved = localStorage.getItem('checklistItems')
       if (saved) {
         const parsed = JSON.parse(saved)
-        // Validate that parsed data has the correct structure AND correct length
-        if (Array.isArray(parsed) && parsed.length === initialItems.length) {
+        if (Array.isArray(parsed)) {
           return parsed
-        } else {
-          // localStorage has wrong number of items, clear it
-          localStorage.removeItem('checklistItems')
         }
       }
     } catch (error) {
       console.error('Error loading checklist from localStorage:', error)
       localStorage.removeItem('checklistItems')
     }
-    return initialItems
+    return [...initialItems, ...dynamicItems]
   })
 
   const [showConfetti, setShowConfetti] = useState(false)
+
+  // Update items when dynamic items change
+  useEffect(() => {
+    setItems(prevItems => {
+      // Keep checked state of existing items
+      const newItems = [...initialItems, ...dynamicItems]
+      const checkedMap = new Map(prevItems.map(item => [item.id, item.checked]))
+
+      return newItems.map(item => ({
+        ...item,
+        checked: checkedMap.get(item.id) ?? false,
+      }))
+    })
+  }, [dynamicItems])
+
+  // Save selected countries to localStorage
+  useEffect(() => {
+    try {
+      localStorage.setItem('selectedCountries', JSON.stringify(selectedCountries))
+    } catch (error) {
+      console.error('Error saving selected countries:', error)
+    }
+  }, [selectedCountries])
 
   // Debounced localStorage save - only save after user stops clicking
   useEffect(() => {
@@ -457,6 +536,16 @@ const Checklist = () => {
     [checkedCount, items.length]
   )
 
+  const toggleCountry = useCallback((country: string) => {
+    setSelectedCountries(prev => {
+      if (prev.includes(country)) {
+        return prev.filter(c => c !== country)
+      } else {
+        return [...prev, country]
+      }
+    })
+  }, [])
+
   return (
     <div className="max-w-4xl mx-auto px-3 md:px-4">
       {/* Header */}
@@ -473,6 +562,40 @@ const Checklist = () => {
         </p>
       </motion.div>
 
+      {/* Country Selector */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="card mb-4 md:mb-6 p-3 md:p-4"
+      >
+        <h3 className="text-base md:text-lg font-bold text-gray-800 mb-3 flex items-center gap-2">
+          <Globe className="w-5 h-5 text-blue-600" />
+          Utazási Útvonal
+        </h3>
+        <p className="text-xs md:text-sm text-gray-600 mb-3">
+          Válaszd ki, mely országokon keresztül fogsz vontatni. Az ellenőrzőlista automatikusan frissül az adott ország szabályaival.
+        </p>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2">
+          {COUNTRIES.map(country => (
+            <motion.button
+              key={country}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => toggleCountry(country)}
+              className={`p-2 md:p-3 rounded-lg transition-all flex items-center justify-center gap-1.5 text-xs md:text-sm font-medium ${
+                selectedCountries.includes(country)
+                  ? 'bg-blue-500 text-white shadow-lg'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              } ${country === 'Magyarország' ? 'cursor-not-allowed opacity-75' : ''}`}
+              disabled={country === 'Magyarország'}
+            >
+              <div className={`fib fi-${COUNTRY_FLAGS[country]}`} style={{ width: '16px', height: '12px' }}></div>
+              <span className="hidden sm:inline">{country}</span>
+            </motion.button>
+          ))}
+        </div>
+      </motion.div>
+
       {/* Progress Bar */}
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
@@ -480,9 +603,14 @@ const Checklist = () => {
         className="card mb-4 md:mb-6 p-3 md:p-4"
       >
         <div className="flex justify-between items-center mb-2 md:mb-3">
-          <span className="text-sm md:text-lg font-semibold text-gray-800">
-            {checkedCount}/{items.length}
-          </span>
+          <div>
+            <span className="text-sm md:text-lg font-semibold text-gray-800">
+              {checkedCount}/{items.length} elem kész
+            </span>
+            <p className="text-xs text-gray-500 mt-1">
+              {Math.round(progress)}% - {items.length - checkedCount} hátra
+            </p>
+          </div>
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -534,7 +662,6 @@ const Checklist = () => {
           className="mb-4 md:mb-6"
         >
           <h3 className="text-base md:text-xl font-bold text-gray-800 mb-2 md:mb-3 flex items-center">
-            <span className="w-1.5 h-1.5 md:w-2 md:h-2 bg-blue-500 rounded-full mr-2"></span>
             {category}
           </h3>
           <div className="space-y-2 md:space-y-3">
